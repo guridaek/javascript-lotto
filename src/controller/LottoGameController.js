@@ -14,10 +14,12 @@ class LottoGameController {
       this.#lottoGame.purchaseLottos(budget);
     });
 
-    printPurchaseDetails();
+    this.printPurchaseDetails();
   }
 
   printPurchaseDetails() {
     OutputView.printLottos(this.#lottoGame.getLottos());
   }
 }
+
+module.exports = LottoGameController;

@@ -2,7 +2,7 @@ const { Console } = require('@woowacourse/mission-utils');
 
 const InputView = {
   readUserBudget(callback) {
-    Console.readLine(input => {
+    Console.readLine('구입금액을 입력해 주세요.', input => {
       this.validateBudget(input);
       callback(input);
     });
@@ -10,7 +10,7 @@ const InputView = {
 
   validateBudget(budget) {
     const isNumber = /^[0-9]+$/;
-    if (!isNumber(budget)) {
+    if (!isNumber.test(budget)) {
       throw new Error('[ERROR] 숫자만 입력할 수 있습니다.');
     }
     if (+budget < 1000) {

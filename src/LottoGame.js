@@ -14,6 +14,10 @@ class LottoGame {
       this.#lottos.push(new Lotto(Random.pickUniqueNumbersInRange(1, 45, 6)));
     }
   }
+
+  getLottos() {
+    return this.#lottos;
+  }
 }
 
 module.exports = LottoGame;

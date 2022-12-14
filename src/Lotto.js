@@ -21,6 +21,10 @@ class Lotto {
   includes(number) {
     return this.#numbers.inclueds(number);
   }
+
+  getNumbers() {
+    return this.#numbers;
+  }
 }
 
 module.exports = Lotto;

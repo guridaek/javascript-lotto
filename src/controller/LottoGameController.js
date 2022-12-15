@@ -19,6 +19,17 @@ class LottoGameController {
 
   printPurchaseDetails() {
     OutputView.printLottos(this.#lottoGame.getLottos());
+    this.inputWinningLotto();
+  }
+
+  inputWinningLotto() {
+    let numbers;
+    InputView.readWinningNumbers(winningNumbers => {
+      numbers = winningNumbers.split(',').map(Number);
+    });
+    InputView.readBonusNumber(bonusNumber => {
+      this.#lottoGame.setWinningLotto(numbers, +bonusNumber);
+    });
   }
 }
 

@@ -1,5 +1,6 @@
 const { Random } = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
+const WinningLotto = require('./WinningLotto');
 
 class LottoGame {
   #lottos;
@@ -17,6 +18,10 @@ class LottoGame {
 
   getLottos() {
     return this.#lottos;
+  }
+
+  setWinningLotto(numbers, bonusNumber) {
+    this.#winningLotto = new WinningLotto(numbers, bonusNumber);
   }
 }
 

@@ -19,7 +19,7 @@ class Lotto {
   }
 
   includes(number) {
-    return this.#numbers.inclueds(number);
+    return this.#numbers.includes(number);
   }
 
   getNumbers() {

@@ -23,6 +23,34 @@ class LottoGame {
   setWinningLotto(numbers, bonusNumber) {
     this.#winningLotto = new WinningLotto(numbers, bonusNumber);
   }
+
+  getResult() {
+    const result = [0, 0, 0, 0, 0, 0];
+    this.#lottos.forEach(lotto => {
+      let [cnt, isBonusNumberMatched] = [0, false];
+      lotto.getNumbers().forEach(number => {
+        if (this.#winningLotto.includes(number)) cnt += 1;
+        if (this.#winningLotto.isCorrectBonusNumber(number)) isBonusNumberMatched = true;
+      });
+      result[this.getRank(cnt, isBonusNumberMatched)] += 1;
+    });
+    return result;
+  }
+
+  getRank(matchingCount, isBonusNumberMatched) {
+    switch (matchingCount) {
+      case 3:
+        return 5;
+      case 4:
+        return 4;
+      case 5:
+        return isBonusNumberMatched ? 2 : 3;
+      case 6:
+        return 1;
+      default:
+        return 0;
+    }
+  }
 }
 
 module.exports = LottoGame;

@@ -1,41 +1,42 @@
 const { Console } = require('@woowacourse/mission-utils');
+const { ERROR_MSG, QUERY, LOTTO_PRICE } = require('../Constants');
 
 const InputView = {
   readUserBudget(callback) {
-    this.getUserInput('구입금액을 입력해 주세요.', callback, this.validateBudget);
+    this.getUserInput(QUERY.USER_BUDGET, callback, this.validateBudget);
   },
 
   validateBudget(budget) {
     const isNumber = /^[0-9]+$/;
     if (!isNumber.test(budget)) {
-      throw new Error('[ERROR] 숫자만 입력할 수 있습니다.');
+      throw new Error(ERROR_MSG.NOT_NUMBER);
     }
-    if (+budget < 1000) {
-      throw new Error('[ERROR] 구매 금액은 로또 가격보다 적을 수 없습니다.');
+    if (+budget < LOTTO_PRICE) {
+      throw new Error(ERROR_MSG.BUDGET_MINIMUN);
     }
-    if (+budget % 1000 !== 0) {
-      throw new Error('[ERROR] 구매 금액은 로또 가격의 배수여야합니다..');
+    if (+budget % LOTTO_PRICE !== 0) {
+      throw new Error(ERROR_MSG.BUDGET_NOT_DIVIDED);
     }
   },
 
   readWinningNumbers(callback) {
-    this.getUserInput('당첨 번호를 입력해 주세요.', callback, this.validateWinningNumbers);
+    this.getUserInput(QUERY.WINNING_NUMBERS, callback, this.validateWinningNumbers);
   },
 
   validateWinningNumbers(winningNumbers) {
     if (winningNumbers.split(',').map(Number).includes(NaN)) {
-      throw new Error('[ERROR] 숫자만 입력할 수 있습니다.');
+      throw new Error(ERROR_MSG.NOT_NUMBER);
     }
   },
 
   readBonusNumber(callback) {
-    this.getUserInput('보너스 번호를 입력해 주세요.', callback, this.validateBonusNumber);
+    this.getUserInput(QUERY.BONUS_NUMBER, callback, this.validateBonusNumber);
   },
 
   validateBonusNumber(number) {
     const isNumber = /^[0-9]+$/;
     if (!isNumber.test(number)) {
-      throw new Error('[ERROR] 숫자만 입력할 수 있습니다.');
+      throw new Error(ERROR_MSG.NOT_NUMBER);
     }
   },
 

@@ -30,6 +30,11 @@ class LottoGameController {
     InputView.readBonusNumber(bonusNumber => {
       this.#lottoGame.setWinningLotto(numbers, +bonusNumber);
     });
+    this.printResult();
+  }
+
+  printResult() {
+    OutputView.printResult(this.#lottoGame.getResult());
   }
 }
 

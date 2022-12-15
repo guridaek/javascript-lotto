@@ -1,3 +1,4 @@
+const { Console } = require('@woowacourse/mission-utils');
 const LottoGame = require('../LottoGame');
 const InputView = require('../view/InputView');
 const OutputView = require('../view/OutputView');
@@ -35,6 +36,8 @@ class LottoGameController {
 
   printResult() {
     OutputView.printResult(this.#lottoGame.getResult());
+    OutputView.printProfit(this.#lottoGame.getProfit(this.#lottoGame.getResult()));
+    Console.close();
   }
 }
 

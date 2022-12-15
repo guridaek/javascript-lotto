@@ -1,6 +1,7 @@
 const { Random } = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
 const WinningLotto = require('./WinningLotto');
+const { LOTTO_PRIZE } = require('./Constants');
 
 class LottoGame {
   #lottos;
@@ -50,6 +51,15 @@ class LottoGame {
       default:
         return 0;
     }
+  }
+
+  getProfit(result) {
+    let [budget, prize] = [0, 0];
+    result.forEach((cnt, rank) => {
+      budget += cnt * 1000;
+      prize += cnt * LOTTO_PRIZE[rank];
+    });
+    return (prize / budget) * 100;
   }
 }
 

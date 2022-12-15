@@ -21,6 +21,10 @@ const OutputView = {
       ].join('\n'),
     );
   },
+
+  printProfit(profit) {
+    Console.print(`총 수익률은 ${profit.toFixed(1).toLocaleString('ko-KR')}%입니다.`);
+  },
 };
 
 module.exports = OutputView;
